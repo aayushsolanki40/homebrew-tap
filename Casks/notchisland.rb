@@ -4,7 +4,7 @@ cask "notchisland" do
 
   url "https://github.com/aayushsolanki40/NotchIsland/releases/download/v#{version}/NotchIsland.zip"
   name "NotchIsland"
-  desc "iPhone-style Dynamic Island for the Mac notch"
+  desc "Dynamic Island-style live activities in the notch"
   homepage "https://github.com/aayushsolanki40/NotchIsland"
 
   livecheck do
@@ -12,15 +12,17 @@ cask "notchisland" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "NotchIsland.app"
 
   # Release builds are ad-hoc signed rather than notarized, so Gatekeeper would
   # block the first launch; clear the quarantine flag Homebrew sets on download.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/NotchIsland.app"]
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.quarantine", "{{appdir}}/NotchIsland.app"],
+        writable_paths: ["NotchIsland.app"],
+        writable_base:  :appdir
   end
 
   uninstall quit: "com.aayushsolanki.NotchIsland"
