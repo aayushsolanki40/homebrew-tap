@@ -1,6 +1,6 @@
 cask "notchisland" do
-  version "1.0.1"
-  sha256 "1908fbdf6a6493f425ff5cf327dd0bd20fd566b5f704af3c96694901e95ccaba"
+  version "1.1.0"
+  sha256 "5ac61a5b708bebe0b65921f1a0ffc4c5759adf85f30d7a28923eb7d59c4a874d"
 
   url "https://github.com/aayushsolanki40/NotchIsland/releases/download/v#{version}/NotchIsland.zip"
   name "NotchIsland"
